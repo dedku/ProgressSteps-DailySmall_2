@@ -1,0 +1,24 @@
+{
+  "name": "progresssteps-dailysmall-2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run --coverage",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^20.0.1",
+    "@vitest/coverage-c8": "^0.25.3",
+    "c8": "^7.12.0",
+    "jsdom": "^20.0.3",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3",
+    "vitest": "^0.25.3"
+  },
+  "dependencies": {
+    "sass": "^1.56.1"
+  }
+}
