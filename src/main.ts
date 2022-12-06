@@ -2,18 +2,18 @@ import './sass/style.scss'
 import { update } from './ts/steps'
 
 document.body.innerHTML = `
-<div class="container">
-      <div class="container__progress">
-        <div class="container__progress__steps" id="progress"></div>
-        <div class="container__progress__circle container__progress__circle__active">1</div>
-        <div class="container__progress__circle">2</div>
-        <div class="container__progress__circle">3</div>
-        <div class="container__progress__circle">4</div>
-      </div>
-
-      <button class="container__btn" id="prev" disabled>Prev</button>
-      <button class="container__btn" id="next">Next</button>
+  <div class="container">
+    <div class="container__progress">
+      <div class="container__progress__steps" id="progress"></div>
+      <div class="container__progress__circle container__progress__circle__active">1</div>
+      <div class="container__progress__circle">2</div>
+      <div class="container__progress__circle">3</div>
+      <div class="container__progress__circle">4</div>
     </div>
+
+    <button class="container__btn" id="prev" disabled>Prev</button>
+    <button class="container__btn" id="next">Next</button>
+  </div>
 `
 // const progress = document.getElementById('progress') as HTMLDivElement | null;
 // const prev = document.getElementById('prev') as HTMLButtonElement | null;

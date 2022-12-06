@@ -8,7 +8,7 @@ export function update(existingDomObject: DomObject) {
     disableOrEnableButton(existingDomObject.currentActive, existingDomObject.prev, existingDomObject.next, existingDomObject.circles)
 }
 
-function removeOrAddActive(circlesArray: NodeListOf<Element>, activeStep: number) {
+export function removeOrAddActive(circlesArray: NodeListOf<Element>, activeStep: number) {
     circlesArray.forEach((circle, idx) => {
         let currentActiveGreatedThanIndex = idx < activeStep
         if (currentActiveGreatedThanIndex) {
@@ -21,20 +21,20 @@ function removeOrAddActive(circlesArray: NodeListOf<Element>, activeStep: number
 }
 
 
-function addStyleToActive(progressElement: HTMLDivElement | null, circlesArray: NodeListOf<Element>) {
+export function addStyleToActive(progressElement: HTMLDivElement | null, circlesArray: NodeListOf<Element>) {
     const actives = document.querySelectorAll('.container__progress__circle__active')
 
     progressElement!.style.width = (actives.length - 1) / (circlesArray.length - 1) * 100 + '%'
 }
 
-function disableOrEnableButton(activeStep: number, previousStep: HTMLButtonElement | null, nextStep: HTMLButtonElement | null, circlesArray: NodeListOf<Element>) {
+export function disableOrEnableButton(activeStep: number, previousStep: HTMLButtonElement | null, nextStep: HTMLButtonElement | null, circlesArray: NodeListOf<Element>) {
     if (activeStep === 1) {
         previousStep?.setAttribute('disabled', '');
     }
     if (activeStep === circlesArray.length) {
         nextStep?.setAttribute('disabled', '');
     }
-    if (activeStep !== circlesArray.length) {
+    if (activeStep !== circlesArray.length && activeStep !== 1) {
         previousStep?.removeAttribute('disabled');
         nextStep?.removeAttribute('disabled');
     }
