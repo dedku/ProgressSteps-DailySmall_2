@@ -1,4 +1,5 @@
 import './sass/style.scss'
+import { update } from './ts/steps'
 
 document.body.innerHTML = `
 <div class="container">
@@ -14,57 +15,43 @@ document.body.innerHTML = `
       <button class="container__btn" id="next">Next</button>
     </div>
 `
-const progress = document.getElementById('progress') as HTMLDivElement | null;
-const prev = document.getElementById('prev') as HTMLButtonElement | null;
-const next = document.getElementById('next') as HTMLButtonElement | null;
-const circles: NodeListOf<Element> = document.querySelectorAll('.container__progress__circle')
+// const progress = document.getElementById('progress') as HTMLDivElement | null;
+// const prev = document.getElementById('prev') as HTMLButtonElement | null;
+// const next = document.getElementById('next') as HTMLButtonElement | null;
+// const circles: NodeListOf<Element> = document.querySelectorAll('.container__progress__circle')
 
-let currentActive = 1
-
-next!.addEventListener('click', () => {
-  currentActive++
-
-  if (currentActive > circles.length) {
-    currentActive = circles.length
-  }
-
-  update(circles)
-})
-
-prev!.addEventListener('click', () => {
-  currentActive--
-
-  if (currentActive < 1) {
-    currentActive = 1
-  }
-
-  update(circles)
-})
-
-//TODO ADD OBJECT INSTED OF ALL PARAMETS
-function update(circleArray: NodeListOf<Element>) {
-  circleArray.forEach((circle, idx) => {
-    let currentActiveGreatedThanIndex = idx < currentActive
-    if (currentActiveGreatedThanIndex) {
-      circle.classList.add('container__progress__circle__active')
-    }
-    if (!currentActiveGreatedThanIndex) {
-      circle.classList.remove('container__progress__circle__active')
-    }
-  })
-
-  const actives = document.querySelectorAll('.container__progress__circle__active')
-
-  progress!.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%'
-
-  if (currentActive === 1) {
-    prev?.setAttribute('disabled', '');
-  }
-  if (currentActive === circles.length) {
-    next?.setAttribute('disabled', '');
-  }
-  if (currentActive !== circles.length) {
-    prev?.removeAttribute('disabled');
-    next?.removeAttribute('disabled');
-  }
+export type DomObject = {
+  progress: HTMLDivElement | null,
+  prev: HTMLButtonElement | null,
+  next: HTMLButtonElement | null,
+  circles: NodeListOf<Element>,
+  currentActive: number
 }
+
+const domObject: DomObject = {
+  progress: document.getElementById('progress') as HTMLDivElement,
+  prev: document.getElementById('prev') as HTMLButtonElement,
+  next: document.getElementById('next') as HTMLButtonElement,
+  circles: document.querySelectorAll('.container__progress__circle'),
+  currentActive: 1
+}
+
+domObject.next!.addEventListener('click', () => {
+  domObject.currentActive++
+
+  if (domObject.currentActive > domObject.circles.length) {
+    domObject.currentActive = domObject.circles.length
+  }
+
+  update(domObject)
+})
+
+domObject.prev!.addEventListener('click', () => {
+  domObject.currentActive--
+
+  if (domObject.currentActive < 1) {
+    domObject.currentActive = 1
+  }
+
+  update(domObject)
+})
